@@ -1,0 +1,13 @@
+{
+    "name": "hexlet/code",
+    "authors": [
+        {
+            "name": "Vladimir Kazakov",
+            "email": "belsynth@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "description": "Brain Games by VK and Hexlet",
+    "license": "MIT",
+    "require": {}
+}
