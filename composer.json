@@ -1,8 +1,7 @@
 {
     "name": "hexlet/code",
-    "bin": [
-        "bin/brain-games"
-    ],
+    "description": "Brain Games by VK and Hexlet",
+    "license": "MIT",
     "authors": [
         {
             "name": "Vladimir Kazakov",
@@ -10,14 +9,17 @@
             "role": "Developer"
         }
     ],
-    "description": "Brain Games by VK and Hexlet",
-    "license": "MIT",
+    "bin": [
+        "bin/brain-games",
+        "bin/brain-even"
+    ],
     "scripts": {
         "phpcs": "phpcs"
     },
     "autoload": {
         "files": [
-            "src/Cli.php"
+            "src/Cli.php",
+            "src/Even.php"
         ]
     },
     "require": {
