@@ -12,7 +12,8 @@
     "bin": [
         "bin/brain-games",
         "bin/brain-even",
-        "bin/brain-calc"
+        "bin/brain-calc",
+        "bin/brain-gcd"
     ],
     "scripts": {
         "phpcs": "phpcs"
@@ -20,9 +21,11 @@
     "autoload": {
         "files": [
             "src/Engine.php",
+            "src/Helpers.php",
             "src/Cli.php",
             "src/Games/Even.php",
-            "src/Games/Calc.php"
+            "src/Games/Calc.php",
+            "src/Games/Gcd.php"
         ]
     },
     "require": {
