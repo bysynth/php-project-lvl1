@@ -6,12 +6,6 @@ const MAX_ROUNDS_COUNT = 3;
 
 use function cli\prompt;
 use function cli\line;
-use function BrainGames\Games\Calc\getGameGoal as calcGoal;
-use function BrainGames\Games\Calc\getGameData as calcData;
-use function BrainGames\Games\Even\getGameGoal as evenGoal;
-use function BrainGames\Games\Even\getGameData as evenData;
-use function BrainGames\Games\Gcd\getGameGoal as gcdGoal;
-use function BrainGames\Games\Gcd\getGameData as gcdData;
 
 function greeting(): string
 {
@@ -24,23 +18,13 @@ function greeting(): string
 
 function run(string $game): void
 {
-    $goal = '';
-    $data = [];
+    $gameNamespace = "\BrainGames\Games\\$game";
 
-    if ($game === 'calc') {
-        $goal = calcGoal();
-        $data = calcData();
-    }
+    $getGoalFunction = "$gameNamespace\getGameGoal";
+    $getDataFunction = "$gameNamespace\getGameData";
 
-    if ($game === 'even') {
-        $goal = evenGoal();
-        $data = evenData();
-    }
-
-    if ($game === 'gcd') {
-        $goal = gcdGoal();
-        $data = gcdData();
-    }
+    $goal = $getGoalFunction();
+    $data = $getDataFunction();
 
     $playerName = greeting();
 
