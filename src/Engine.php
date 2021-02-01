@@ -2,14 +2,16 @@
 
 namespace BrainGames\Engine;
 
+const MAX_ROUNDS_COUNT = 3;
+
 use function cli\prompt;
 use function cli\line;
 use function BrainGames\Games\Calc\getGameGoal as calcGoal;
 use function BrainGames\Games\Calc\getGameData as calcData;
 use function BrainGames\Games\Even\getGameGoal as evenGoal;
 use function BrainGames\Games\Even\getGameData as evenData;
-
-const MAX_ROUNDS_COUNT = 3;
+use function BrainGames\Games\Gcd\getGameGoal as gcdGoal;
+use function BrainGames\Games\Gcd\getGameData as gcdData;
 
 function greeting(): string
 {
@@ -35,6 +37,11 @@ function run(string $game): void
         $data = evenData();
     }
 
+    if ($game === 'gcd') {
+        $goal = gcdGoal();
+        $data = gcdData();
+    }
+
     $playerName = greeting();
 
     line($goal);
@@ -44,7 +51,7 @@ function run(string $game): void
     for ($i = 0; $i < MAX_ROUNDS_COUNT; $i++) {
         $questionAndAnswer = $data[$i];
         line("Question: $questionAndAnswer[0]");
-        $playersAnswer = prompt('Your answer', '', ': ');
+        $playersAnswer = prompt('Your answer', '');
 
         if ($playersAnswer === $questionAndAnswer[1]) {
             line('Correct!');
