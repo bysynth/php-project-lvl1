@@ -2,12 +2,9 @@
 
 namespace BrainGames\Games\Calc;
 
-use const BrainGames\Engine\MAX_ROUNDS_COUNT;
+use function BrainGames\Helpers\generateNumber;
 
-function generateNumber(): int
-{
-    return mt_rand(1, 10);
-}
+use const BrainGames\Engine\MAX_ROUNDS_COUNT;
 
 function getGameGoal(): string
 {
@@ -24,8 +21,8 @@ function generateRandomOperation(): string
 
 function generateQuestionAndAnswer(string $operation): array
 {
-    $num1 = generateNumber();
-    $num2 = generateNumber();
+    $num1 = generateNumber(1, 10);
+    $num2 = generateNumber(1, 10);
     $question = '';
     $answer = 0;
 

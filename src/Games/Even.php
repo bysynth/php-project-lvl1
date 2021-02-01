@@ -2,12 +2,9 @@
 
 namespace BrainGames\Games\Even;
 
-use const BrainGames\Engine\MAX_ROUNDS_COUNT;
+use function BrainGames\Helpers\generateNumber;
 
-function generateNumber(): int
-{
-    return mt_rand(1, 10);
-}
+use const BrainGames\Engine\MAX_ROUNDS_COUNT;
 
 function getGameGoal(): string
 {
@@ -21,7 +18,7 @@ function isEven(int $int): bool
 
 function generateQuestionAndAnswer(): array
 {
-    $question = generateNumber();
+    $question = generateNumber(1, 10);
     $answer = isEven($question) ? 'yes' : 'no';
 
     return [$question, $answer];
