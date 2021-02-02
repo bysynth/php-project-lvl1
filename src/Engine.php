@@ -23,8 +23,12 @@ function run(string $game): void
     $getGoalFunction = "$gameNamespace\getGameGoal";
     $getDataFunction = "$gameNamespace\getGameData";
 
-    $goal = $getGoalFunction();
-    $data = $getDataFunction();
+    if (is_callable($getGoalFunction) && is_callable($getDataFunction)) {
+        $goal = $getGoalFunction();
+        $data = $getDataFunction();
+    } else {
+        exit('Oops! Something goes wrong...');
+    }
 
     $playerName = greeting();
 
