@@ -7,15 +7,6 @@ const MAX_ROUNDS_COUNT = 3;
 use function cli\prompt;
 use function cli\line;
 
-function greeting(): string
-{
-    line('Welcome to the Brain Game!');
-    $name = prompt('May I have your name?', '', ' ');
-    line("Hello, %s!", $name);
-
-    return $name;
-}
-
 function run(string $game): void
 {
     $gameNamespace = "\BrainGames\Games\\$game";
@@ -30,8 +21,9 @@ function run(string $game): void
         exit('Oops! Something goes wrong...');
     }
 
-    $playerName = greeting();
-
+    line('Welcome to the Brain Game!');
+    $playerName = prompt('May I have your name?', '', ' ');
+    line("Hello, %s!", $playerName);
     line($goal);
 
     $rightAnswersCount = 0;
