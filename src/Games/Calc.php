@@ -3,15 +3,11 @@
 namespace BrainGames\Games\Calc;
 
 use function BrainGames\Helpers\generateNumber;
+use function BrainGames\Engine\run;
 
-use const BrainGames\Engine\MAX_ROUNDS_COUNT;
+const GAME_GOAL = 'What is the result of the expression?';
 
-function getGameGoal(): string
-{
-    return 'What is the result of the expression?';
-}
-
-function generateRandomOperation(): string
+function getMathOperation(): string
 {
     $operations = ['+', '-', '*'];
     shuffle($operations);
@@ -19,8 +15,9 @@ function generateRandomOperation(): string
     return $operations[0];
 }
 
-function generateQuestionAndAnswer(string $operation): array
+function getGameData(): array
 {
+    $operation = getMathOperation();
     $num1 = generateNumber(1, 10);
     $num2 = generateNumber(1, 10);
     $question = '';
@@ -44,12 +41,7 @@ function generateQuestionAndAnswer(string $operation): array
     return [$question, (string) $answer];
 }
 
-function getGameData(): array
+function play(): void
 {
-    $data = [];
-    for ($i = 0; $i < MAX_ROUNDS_COUNT; $i++) {
-        $data[] = generateQuestionAndAnswer(generateRandomOperation());
-    }
-
-    return $data;
+    run('Calc', GAME_GOAL);
 }

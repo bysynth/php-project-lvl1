@@ -3,13 +3,9 @@
 namespace BrainGames\Games\Gcd;
 
 use function BrainGames\Helpers\generateNumber;
+use function BrainGames\Engine\run;
 
-use const BrainGames\Engine\MAX_ROUNDS_COUNT;
-
-function getGameGoal(): string
-{
-    return 'Find the greatest common divisor of given numbers.';
-}
+const GAME_GOAL = 'Find the greatest common divisor of given numbers.';
 
 function gcd(int $num1, int $num2): int
 {
@@ -24,7 +20,7 @@ function gcd(int $num1, int $num2): int
     return $num1 + $num2;
 }
 
-function generateQuestionAndAnswer(): array
+function getGameData(): array
 {
     $num1 = generateNumber(1, 100);
     $num2 = generateNumber(1, 100);
@@ -34,12 +30,7 @@ function generateQuestionAndAnswer(): array
     return [$question, (string) $answer];
 }
 
-function getGameData(): array
+function play(): void
 {
-    $data = [];
-    for ($i = 0; $i < MAX_ROUNDS_COUNT; $i++) {
-        $data[] = generateQuestionAndAnswer();
-    }
-
-    return $data;
+    run('Gcd', GAME_GOAL);
 }

@@ -3,23 +3,19 @@
 namespace BrainGames\Games\Progression;
 
 use function BrainGames\Helpers\generateNumber;
+use function BrainGames\Engine\run;
 
-use const BrainGames\Engine\MAX_ROUNDS_COUNT;
-
-const MAX_PROGRESSION_ELEMENTS_COUNT = 10;
-
-function getGameGoal(): string
-{
-    return 'What number is missing in the progression?';
-}
+const MIN_PROGRESSION_ELEMENTS_COUNT = 5;
+const GAME_GOAL = 'What number is missing in the progression?';
 
 function generateProgression(int $start, int $step): array
 {
     $result = [];
     $element = $start;
     $elementsCount = 0;
+    $maxElementsCount = generateNumber(MIN_PROGRESSION_ELEMENTS_COUNT, 15);
 
-    while ($elementsCount < MAX_PROGRESSION_ELEMENTS_COUNT) {
+    while ($elementsCount <= $maxElementsCount) {
         $result[] = $element;
         $element += $step;
         $elementsCount++;
@@ -28,30 +24,26 @@ function generateProgression(int $start, int $step): array
     return $result;
 }
 
-function generateQuestionAndAnswer(): array
+function getGameData(): array
 {
     $progression = generateProgression(generateNumber(1, 5), generateNumber(1, 5));
-    $secretElementIndex = generateNumber(0, 9);
+    $lastProgressionIndex = count($progression) - 1;
+    $secretElementIndex = generateNumber(0, $lastProgressionIndex);
     $answer = $progression[$secretElementIndex];
     $question = '';
 
     foreach ($progression as $i => $element) {
         if ($i !== $secretElementIndex) {
-            $question .= "$element ";
+            $question = "{$question} {$element}";
         } else {
-            $question .= ".. ";
+            $question = "{$question} ..";
         }
     }
 
     return [$question, (string) $answer];
 }
 
-function getGameData(): array
+function play(): void
 {
-    $data = [];
-    for ($i = 0; $i < MAX_ROUNDS_COUNT; $i++) {
-        $data[] = generateQuestionAndAnswer();
-    }
-
-    return $data;
+    run('Progression', GAME_GOAL);
 }

@@ -3,13 +3,9 @@
 namespace BrainGames\Games\Prime;
 
 use function BrainGames\Helpers\generateNumber;
+use function BrainGames\Engine\run;
 
-use const BrainGames\Engine\MAX_ROUNDS_COUNT;
-
-function getGameGoal(): string
-{
-    return 'Answer "yes" if given number is prime. Otherwise answer "no".';
-}
+const GAME_GOAL = 'Answer "yes" if given number is prime. Otherwise answer "no".';
 
 function isPrime(int $int): bool
 {
@@ -26,7 +22,7 @@ function isPrime(int $int): bool
     return true;
 }
 
-function generateQuestionAndAnswer(): array
+function getGameData(): array
 {
     $question = generateNumber(2, 100);
     $answer = isPrime($question) ? 'yes' : 'no';
@@ -34,12 +30,7 @@ function generateQuestionAndAnswer(): array
     return [$question, $answer];
 }
 
-function getGameData(): array
+function play(): void
 {
-    $data = [];
-    for ($i = 0; $i < MAX_ROUNDS_COUNT; $i++) {
-        $data[] = generateQuestionAndAnswer();
-    }
-
-    return $data;
+    run('Prime', GAME_GOAL);
 }
