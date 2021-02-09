@@ -34,9 +34,9 @@ function getGameData(): array
 
     foreach ($progression as $i => $element) {
         if ($i !== $secretElementIndex) {
-            $question = "{$question} {$element}";
+            $question = "{$question}{$element} ";
         } else {
-            $question = "{$question} ..";
+            $question = "{$question}.. ";
         }
     }
 
