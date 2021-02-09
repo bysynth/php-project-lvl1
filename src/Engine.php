@@ -11,12 +11,12 @@ function run(string $game): void
 {
     $gameNamespace = "\BrainGames\Games\\$game";
 
-    $getGoalFunction = "$gameNamespace\getGameGoal";
-    $getDataFunction = "$gameNamespace\getGameData";
+    $getGoal = "$gameNamespace\getGameGoal";
+    $getData = "$gameNamespace\getGameData";
 
-    if (is_callable($getGoalFunction) && is_callable($getDataFunction)) {
-        $goal = $getGoalFunction();
-        $data = $getDataFunction();
+    if (is_callable($getGoal) && is_callable($getData)) {
+        $goal = $getGoal();
+        $gameData = $getData();
     } else {
         exit('Oops! Something goes wrong...');
     }
@@ -29,7 +29,7 @@ function run(string $game): void
     $rightAnswersCount = 0;
 
     for ($i = 0; $i < MAX_ROUNDS_COUNT; $i++) {
-        $questionAndAnswer = $data[$i];
+        $questionAndAnswer = $gameData[$i];
         line("Question: $questionAndAnswer[0]");
         $playersAnswer = prompt('Your answer', '');
 
