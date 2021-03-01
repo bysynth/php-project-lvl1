@@ -24,15 +24,15 @@ function run(string $game, string $goal): void
     $rightAnswersCount = 0;
 
     for ($i = 0; $i < MAX_ROUNDS_COUNT; $i++) {
-        $gameData = $getData();
-        line("Question: $gameData[0]");
-        $playersAnswer = prompt('Your answer', '');
+        [$question, $answer] = $getData();
+        line("Question: $question");
+        $playerAnswer = prompt('Your answer', '');
 
-        if ($playersAnswer === $gameData[1]) {
+        if ($playerAnswer === $answer) {
             line('Correct!');
             $rightAnswersCount++;
         } else {
-            line("'$playersAnswer' is wrong answer ;(. Correct answer was '$gameData[1]'.");
+            line("'$playerAnswer' is wrong answer ;(. Correct answer was '$answer'.");
             break;
         }
     }
