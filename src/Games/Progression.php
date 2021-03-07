@@ -5,17 +5,19 @@ namespace BrainGames\Games\Progression;
 use function BrainGames\Engine\run;
 
 const MIN_PROGRESSION_ELEMENTS_COUNT = 5;
-const MAX_PROGRESSION_ELEMENTS_COUNT = 14;
+const MAX_PROGRESSION_ELEMENTS_COUNT = 15;
+const MIN_FIRST_ELEMENT_OF_PROGRESSION = 0;
+const MAX_FIRST_ELEMENT_OF_PROGRESSION = 5;
+const MIN_PROGRESSION_STEP = 1;
+const MAX_PROGRESSION_STEP = 5;
 const GAME_GOAL = 'What number is missing in the progression?';
 
-function generateProgression(): array
+function generateProgression(int $firstElement, int $step, int $maxElementsCount): array
 {
     $result = [];
-    $maxElementsCount = mt_rand(MIN_PROGRESSION_ELEMENTS_COUNT, MAX_PROGRESSION_ELEMENTS_COUNT);
-    $step = mt_rand(1, 5);
 
-    for ($i = 1; $i <= $maxElementsCount; $i++) {
-        $result[] = $step + $step * ($i - 1);
+    for ($i = 0; $i < $maxElementsCount; $i++) {
+        $result[] = $firstElement + $step * $i;
     }
 
     return $result;
@@ -23,7 +25,12 @@ function generateProgression(): array
 
 function getGameData(): array
 {
-    $progression = generateProgression();
+    $firstElement = mt_rand(MIN_FIRST_ELEMENT_OF_PROGRESSION, MAX_FIRST_ELEMENT_OF_PROGRESSION);
+    $step = mt_rand(MIN_PROGRESSION_STEP, MAX_PROGRESSION_STEP);
+    $maxElementsCount = mt_rand(MIN_PROGRESSION_ELEMENTS_COUNT, MAX_PROGRESSION_ELEMENTS_COUNT);
+
+    $progression = generateProgression($firstElement, $step, $maxElementsCount);
+
     $secretElementIndex = array_rand($progression);
     $answer = $progression[$secretElementIndex];
     $progression[$secretElementIndex] = '..';
