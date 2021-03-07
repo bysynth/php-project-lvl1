@@ -4,7 +4,7 @@ namespace BrainGames\Games\Even;
 
 use function BrainGames\Engine\run;
 
-const GAME_GOAL = 'Answer "yes" if the number is even, otherwise answer "no".';
+const GAME_TASK = 'Answer "yes" if the number is even, otherwise answer "no".';
 
 function isEven(int $int): bool
 {
@@ -21,5 +21,5 @@ function getGameData(): array
 
 function play(): void
 {
-    run('Even', GAME_GOAL);
+    run('Even', GAME_TASK);
 }

@@ -4,7 +4,7 @@ namespace BrainGames\Games\Calc;
 
 use function BrainGames\Engine\run;
 
-const GAME_GOAL = 'What is the result of the expression?';
+const GAME_TASK = 'What is the result of the expression?';
 
 function getMathOperation(): string
 {
@@ -39,5 +39,5 @@ function getGameData(): array
 
 function play(): void
 {
-    run('Calc', GAME_GOAL);
+    run('Calc', GAME_TASK);
 }

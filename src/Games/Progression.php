@@ -10,7 +10,7 @@ const MIN_FIRST_ELEMENT_OF_PROGRESSION = 0;
 const MAX_FIRST_ELEMENT_OF_PROGRESSION = 5;
 const MIN_PROGRESSION_STEP = 1;
 const MAX_PROGRESSION_STEP = 5;
-const GAME_GOAL = 'What number is missing in the progression?';
+const GAME_TASK = 'What number is missing in the progression?';
 
 function generateProgression(int $firstElement, int $step, int $maxElementsCount): array
 {
@@ -41,5 +41,5 @@ function getGameData(): array
 
 function play(): void
 {
-    run('Progression', GAME_GOAL);
+    run('Progression', GAME_TASK);
 }
