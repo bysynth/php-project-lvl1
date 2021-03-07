@@ -18,20 +18,16 @@ function getGameData(): array
     $operation = getMathOperation();
     $num1 = mt_rand(1, 10);
     $num2 = mt_rand(1, 10);
-    $question = '';
-    $answer = 0;
+    $question = "$num1 $operation $num2";
 
     switch ($operation) {
         case '+':
-            $question = "{$num1} + {$num2}";
             $answer = $num1 + $num2;
             break;
         case '-':
-            $question = "{$num1} - {$num2}";
             $answer = $num1 - $num2;
             break;
         case '*':
-            $question = "{$num1} * {$num2}";
             $answer = $num1 * $num2;
             break;
         default:
