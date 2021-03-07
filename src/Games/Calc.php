@@ -9,9 +9,8 @@ const GAME_GOAL = 'What is the result of the expression?';
 function getMathOperation(): string
 {
     $operations = ['+', '-', '*'];
-    shuffle($operations);
 
-    return $operations[0];
+    return $operations[array_rand($operations)];
 }
 
 function getGameData(): array
