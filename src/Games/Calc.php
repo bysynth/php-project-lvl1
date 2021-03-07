@@ -31,7 +31,7 @@ function getGameData(): array
             $answer = $num1 * $num2;
             break;
         default:
-            exit("Wrong operation: $operation\n");
+            throw new \Exception("Wrong operation: $operation\n");
     }
 
     return [$question, (string) $answer];

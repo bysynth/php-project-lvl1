@@ -13,7 +13,7 @@ function run(string $game, string $goal): void
     $getData = "$gameNamespace\getGameData";
 
     if (!is_callable($getData)) {
-        exit('Oops! Something goes wrong...');
+        throw new \Exception('Oops! Something goes wrong...');
     }
 
     line('Welcome to the Brain Game!');
