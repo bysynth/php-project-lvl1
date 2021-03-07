@@ -7,7 +7,7 @@ const MAX_ROUNDS_COUNT = 3;
 use function cli\prompt;
 use function cli\line;
 
-function run(string $game, string $goal): void
+function run(string $game, string $task): void
 {
     $gameNamespace = '\\BrainGames\\Games\\' . $game;
     $getData = "$gameNamespace\getGameData";
@@ -19,9 +19,7 @@ function run(string $game, string $goal): void
     line('Welcome to the Brain Game!');
     $playerName = prompt('May I have your name?', '', ' ');
     line("Hello, %s!", $playerName);
-    line($goal);
-
-    $rightAnswersCount = 0;
+    line($task);
 
     for ($i = 0; $i < MAX_ROUNDS_COUNT; $i++) {
         [$question, $answer] = $getData();
@@ -30,16 +28,12 @@ function run(string $game, string $goal): void
 
         if ($playerAnswer === $answer) {
             line('Correct!');
-            $rightAnswersCount++;
         } else {
             line("'$playerAnswer' is wrong answer ;(. Correct answer was '$answer'.");
-            break;
+            line("Let's try again, $playerName!");
+            return;
         }
     }
 
-    if ($rightAnswersCount === MAX_ROUNDS_COUNT) {
-        line("Congratulations, $playerName!");
-    } else {
-        line("Let's try again, $playerName!");
-    }
+    line("Congratulations, $playerName!");
 }
