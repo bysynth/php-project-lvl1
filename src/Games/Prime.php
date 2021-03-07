@@ -8,11 +8,11 @@ const GAME_GOAL = 'Answer "yes" if given number is prime. Otherwise answer "no".
 
 function isPrime(int $int): bool
 {
-    if ($int < 2) {
+    if ($int <= 1) {
         return false;
     }
 
-    for ($i = 2; $i < $int; $i++) {
+    for ($i = 2, $half = intdiv($int, 2); $i <= $half; $i++) {
         if ($int % $i === 0) {
             return false;
         }
