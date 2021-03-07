@@ -2,7 +2,6 @@
 
 namespace BrainGames\Games\Prime;
 
-use function BrainGames\Helpers\generateNumber;
 use function BrainGames\Engine\run;
 
 const GAME_GOAL = 'Answer "yes" if given number is prime. Otherwise answer "no".';
@@ -24,7 +23,7 @@ function isPrime(int $int): bool
 
 function getGameData(): array
 {
-    $question = generateNumber(2, 100);
+    $question = mt_rand(2, 100);
     $answer = isPrime($question) ? 'yes' : 'no';
 
     return [$question, $answer];

@@ -2,7 +2,6 @@
 
 namespace BrainGames\Games\Even;
 
-use function BrainGames\Helpers\generateNumber;
 use function BrainGames\Engine\run;
 
 const GAME_GOAL = 'Answer "yes" if the number is even, otherwise answer "no".';
@@ -14,7 +13,7 @@ function isEven(int $int): bool
 
 function getGameData(): array
 {
-    $question = generateNumber(1, 10);
+    $question = mt_rand(1, 10);
     $answer = isEven($question) ? 'yes' : 'no';
 
     return [$question, $answer];

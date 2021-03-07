@@ -2,7 +2,6 @@
 
 namespace BrainGames\Games\Calc;
 
-use function BrainGames\Helpers\generateNumber;
 use function BrainGames\Engine\run;
 
 const GAME_GOAL = 'What is the result of the expression?';
@@ -18,8 +17,8 @@ function getMathOperation(): string
 function getGameData(): array
 {
     $operation = getMathOperation();
-    $num1 = generateNumber(1, 10);
-    $num2 = generateNumber(1, 10);
+    $num1 = mt_rand(1, 10);
+    $num2 = mt_rand(1, 10);
     $question = '';
     $answer = 0;
 

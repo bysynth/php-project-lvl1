@@ -2,7 +2,6 @@
 
 namespace BrainGames\Games\Progression;
 
-use function BrainGames\Helpers\generateNumber;
 use function BrainGames\Engine\run;
 
 const MIN_PROGRESSION_ELEMENTS_COUNT = 5;
@@ -12,8 +11,8 @@ const GAME_GOAL = 'What number is missing in the progression?';
 function generateProgression(): array
 {
     $result = [];
-    $maxElementsCount = generateNumber(MIN_PROGRESSION_ELEMENTS_COUNT, MAX_PROGRESSION_ELEMENTS_COUNT);
-    $step = generateNumber(1, 5);
+    $maxElementsCount = mt_rand(MIN_PROGRESSION_ELEMENTS_COUNT, MAX_PROGRESSION_ELEMENTS_COUNT);
+    $step = mt_rand(1, 5);
 
     for ($i = 1; $i <= $maxElementsCount; $i++) {
         $result[] = $step + $step * ($i - 1);
