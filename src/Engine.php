@@ -9,10 +9,6 @@ use function cli\line;
 
 function run(callable $getDataFunc, string $gameTask): void
 {
-    if (!is_callable($getDataFunc)) {
-        throw new \Exception('Oops! Something goes wrong...');
-    }
-
     line('Welcome to the Brain Game!');
     $playerName = prompt('May I have your name?', '', ' ');
     line("Hello, %s!", $playerName);
