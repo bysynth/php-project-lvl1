@@ -13,31 +13,31 @@ function getMathOperation(): string
     return $operations[array_rand($operations)];
 }
 
-function getGameData(): array
-{
-    $operation = getMathOperation();
-    $num1 = mt_rand(1, 10);
-    $num2 = mt_rand(1, 10);
-    $question = "$num1 $operation $num2";
-
-    switch ($operation) {
-        case '+':
-            $answer = $num1 + $num2;
-            break;
-        case '-':
-            $answer = $num1 - $num2;
-            break;
-        case '*':
-            $answer = $num1 * $num2;
-            break;
-        default:
-            throw new \Exception("Wrong operation: $operation\n");
-    }
-
-    return [$question, (string) $answer];
-}
-
 function play(): void
 {
-    run('Calc', GAME_TASK);
+    run(
+        function (): array {
+            $operation = getMathOperation();
+            $num1 = mt_rand(1, 10);
+            $num2 = mt_rand(1, 10);
+            $question = "$num1 $operation $num2";
+
+            switch ($operation) {
+                case '+':
+                    $answer = $num1 + $num2;
+                    break;
+                case '-':
+                    $answer = $num1 - $num2;
+                    break;
+                case '*':
+                    $answer = $num1 * $num2;
+                    break;
+                default:
+                    throw new \Exception("Wrong operation: $operation\n");
+            }
+
+            return [$question, (string) $answer];
+        },
+        GAME_TASK
+    );
 }

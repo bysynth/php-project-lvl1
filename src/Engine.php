@@ -7,22 +7,19 @@ const MAX_ROUNDS_COUNT = 3;
 use function cli\prompt;
 use function cli\line;
 
-function run(string $game, string $task): void
+function run(callable $getDataFunc, string $gameTask): void
 {
-    $gameNamespace = '\\BrainGames\\Games\\' . $game;
-    $getData = "$gameNamespace\getGameData";
-
-    if (!is_callable($getData)) {
+    if (!is_callable($getDataFunc)) {
         throw new \Exception('Oops! Something goes wrong...');
     }
 
     line('Welcome to the Brain Game!');
     $playerName = prompt('May I have your name?', '', ' ');
     line("Hello, %s!", $playerName);
-    line($task);
+    line($gameTask);
 
     for ($i = 0; $i < MAX_ROUNDS_COUNT; $i++) {
-        [$question, $answer] = $getData();
+        [$question, $answer] = $getDataFunc();
         line("Question: $question");
         $playerAnswer = prompt('Your answer', '');
 
