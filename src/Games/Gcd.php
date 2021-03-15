@@ -19,19 +19,17 @@ function gcd(int $num1, int $num2): int
     return $num1 + $num2;
 }
 
-function invokeGameData(): callable
+function getGameData(): array
 {
-    return function (): array {
-        $num1 = mt_rand(1, 100);
-        $num2 = mt_rand(1, 100);
-        $question = "$num1 $num2";
-        $answer = gcd($num1, $num2);
+    $num1 = mt_rand(1, 100);
+    $num2 = mt_rand(1, 100);
+    $question = "$num1 $num2";
+    $answer = gcd($num1, $num2);
 
-        return [$question, (string) $answer];
-    };
+    return [$question, (string) $answer];
 }
 
 function play(): void
 {
-    run(invokeGameData(), GAME_TASK);
+    run(fn() => getGameData(), GAME_TASK);
 }

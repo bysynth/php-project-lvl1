@@ -21,17 +21,15 @@ function isPrime(int $int): bool
     return true;
 }
 
-function invokeGameData(): callable
+function getGameData(): array
 {
-    return function (): array {
-        $question = mt_rand(2, 100);
-        $answer = isPrime($question) ? 'yes' : 'no';
+    $question = mt_rand(2, 100);
+    $answer = isPrime($question) ? 'yes' : 'no';
 
-        return [$question, $answer];
-    };
+    return [$question, $answer];
 }
 
 function play(): void
 {
-    run(invokeGameData(), GAME_TASK);
+    run(fn() => getGameData(), GAME_TASK);
 }

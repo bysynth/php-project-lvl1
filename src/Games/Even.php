@@ -11,17 +11,15 @@ function isEven(int $int): bool
     return $int % 2 === 0;
 }
 
-function invokeGameData(): callable
+function getGameData(): array
 {
-    return function (): array {
-        $question = mt_rand(1, 10);
-        $answer = isEven($question) ? 'yes' : 'no';
+    $question = mt_rand(1, 10);
+    $answer = isEven($question) ? 'yes' : 'no';
 
-        return [$question, $answer];
-    };
+    return [$question, $answer];
 }
 
 function play(): void
 {
-    run(invokeGameData(), GAME_TASK);
+    run(fn() => getGameData(), GAME_TASK);
 }

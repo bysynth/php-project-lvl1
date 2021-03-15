@@ -23,25 +23,23 @@ function generateProgression(int $firstElement, int $step, int $maxElementsCount
     return $result;
 }
 
-function invokeGameData(): callable
+function getGameData(): array
 {
-    return function (): array {
-        $firstElement = mt_rand(MIN_FIRST_ELEMENT, MAX_FIRST_ELEMENT);
-        $step = mt_rand(MIN_STEP, MAX_STEP);
-        $maxElementsCount = mt_rand(MIN_ELEMENTS_COUNT, MAX_ELEMENTS_COUNT);
+    $firstElement = mt_rand(MIN_FIRST_ELEMENT, MAX_FIRST_ELEMENT);
+    $step = mt_rand(MIN_STEP, MAX_STEP);
+    $maxElementsCount = mt_rand(MIN_ELEMENTS_COUNT, MAX_ELEMENTS_COUNT);
 
-        $progression = generateProgression($firstElement, $step, $maxElementsCount);
+    $progression = generateProgression($firstElement, $step, $maxElementsCount);
 
-        $secretElementIndex = array_rand($progression);
-        $answer = $progression[$secretElementIndex];
-        $progression[$secretElementIndex] = '..';
-        $question = implode(' ', $progression);
+    $secretElementIndex = array_rand($progression);
+    $answer = $progression[$secretElementIndex];
+    $progression[$secretElementIndex] = '..';
+    $question = implode(' ', $progression);
 
-        return [$question, (string) $answer];
-    };
+    return [$question, (string) $answer];
 }
 
 function play(): void
 {
-    run(invokeGameData(), GAME_TASK);
+    run(fn() => getGameData(), GAME_TASK);
 }
